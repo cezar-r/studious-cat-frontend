@@ -1,0 +1,43 @@
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 75%;
+    width: 75%;
+}
+
+.profile-header {
+    width: 100%;
+    padding-left: 10px;
+    box-sizing: border-box;
+    /* Additional styling for the header */
+}
+
+.profile-personal-info,
+.profile-school-info,
+.previous-meetings {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 20px 10px;
+    box-sizing: border-box;
+    border: none;
+    /* background-color: var(--button-secondary); */
+    border-radius: 8px;
+}
+
+.profile-personal-info p,
+.profile-school-info p,
+.previous-meetings p {
+    margin: 5px 0;
+}
+
+/* You can add additional CSS here for other elements like headers, lists, etc. */

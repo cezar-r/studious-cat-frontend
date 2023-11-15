@@ -1,0 +1,25 @@
+:root {
+    --background-color: #0A1933;
+    --text-color: #FFFFFF;
+    --text-color-disabled: #5D5D5D;
+    --text-color-warning: #FF3656;
+    --button-primary: #FF3656;
+    --button-primary-disabled: #5D5D5D;
+    --button-secondary: #05070A;
+    --button-primary-text: #FFFFFF;
+    --calendar-cell-weekend-bg: #111B2C;
+    --calendar-cell-weekday-bg: #05070A;
+}
+
+[data-theme='light'] {
+    --background-color: #E6E6E6;
+    --text-color: #111B2C;
+    --text-color-disabled: #5D5D5D;
+    --text-color-warning: #FF3656;
+    --button-primary: #FF3656;
+    --button-primary-disabled: #5D5D5D;
+    --button-secondary: #B7B7B7;
+    --button-primary-text: #FFFFFF;
+    --calendar-cell-weekend-bg: #E6E6E6;
+    --calendar-cell-weekday-bg: #B7B7B7;
+}

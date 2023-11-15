@@ -1,0 +1,297 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+.input-field-standard {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.input-field-standard input {
+    width: 90%;
+    max-width: 750px;
+    height: 5vh;
+    max-height: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--text-color);
+    border-color: var(--button-secondary);
+    border-style: solid;
+    font-size: 22px;
+    background-color: var(--button-secondary);
+}
+
+.input-field-standard textarea {
+    width: 90%;
+    max-width: 750px;
+    height: 8vh;
+    max-height: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--text-color);
+    border-color: var(--button-secondary);
+    border-style: solid;
+    font-size: 16px;
+    background-color: var(--button-secondary);
+}
+
+.input-field-standard select {
+    width: 90%;
+    max-width: 750px;
+    height: 10vh;
+    max-height: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--text-color);
+    border-color: var(--button-secondary);
+    border-style: solid;
+    font-size: 22px;
+    background-color: var(--button-secondary);
+}
+
+.input-field-medium-small {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.input-field-medium-small input {
+    width: 90%;
+    max-width: 750px;
+    height: 4vh;
+    max-height: 45%;
+    padding: 8px;
+    border-radius: 8px;
+    color: var(--text-color);
+    border-color: var(--button-secondary);
+    border-style: solid;
+    font-size: 20px;
+    background-color: var(--button-secondary);
+}
+
+.input-field-medium-small select {
+    width: 90%;
+    max-width: 750px;
+    height: 8vh;
+    max-height: 45%;
+    padding: 8px;
+    border-radius: 8px;
+    color: var(--text-color);
+    border-color: var(--button-secondary);
+    border-style: solid;
+    font-size: 20px;
+    background-color: var(--button-secondary);
+}
+
+.continue-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 6px;
+    border-style: solid;
+    color: var(--text-color);
+    font-weight: bold;
+    border: none;
+    width: 50%;
+    max-width: 200px;
+    height: 5vh;
+    max-height: 60%;
+}
+  
+.continue-button-enabled {
+    background-color: var(--button-primary);
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+  
+.continue-button-disabled {
+    background-color: var(--button-primary-disabled);
+    transition: background-color 0.2s ease-in-out;
+    cursor: default;
+}
+
+.continue-button-disabled-clickable {
+    background-color: var(--button-primary-disabled);
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.google-signin-button {
+    color: var(--button-secondary);
+}
+
+.row-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.medium-margin {
+    margin-bottom: 20px;
+}
+
+.large-margin  {
+    margin: 40px;
+}
+
+.dropdown-option-style {
+    width: 90%;
+    max-width: 750px;
+    height: 5vh;
+    max-height: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    color: var(--text-color);
+    border-color: var(--button-secondary);
+    border-style: solid;
+    font-size: 22px;
+    background-color: var(--button-secondary);
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.fade-on-hover:hover {
+    background-color:rgba(255, 255, 255, 0.5);;
+}
+
+.large-spacing {
+    padding-bottom: 40px;
+}
+
+.spacing {
+    padding-bottom: 20px;
+}
+
+.small-spacing {
+    padding-bottom: 10px;
+}
+
+.left-align {
+    text-align: left;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.text {
+    padding-bottom: 10px;
+}
+
+.warning-text {
+    color: var(--text-color-warning);
+    padding-bottom: 200px;
+    font-weight: bold;
+}
+
+.extra-large-text {
+    font-size: 36px;
+}
+
+.large-text {
+    font-size: 30px;
+}
+
+.base-text {
+    font-size: 24px;
+}
+
+.small-text {
+    font-size: 18px;
+}
+
+.extra-small-text {
+    font-size: 12px
+}
+
+.medium-font {
+    font-weight: 600;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.thin-font {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+  }
+
+.disabled-text {
+    color: var(--text-color-disabled);
+}
+
+.left-margin-small {
+    margin-left: 20px;
+}
+
+.left-margin-medium {
+    margin-left: 40px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    width: 40%;
+    max-width: 600px;
+    height: 20%;
+    max-height: 100px; 
+}
+  
+/* Chrome, Safari, and Edge */
+input[type='time']::-webkit-calendar-picker-indicator,
+input[type='date']::-webkit-calendar-picker-indicator {
+    background-color: var(--text-color);
+    border-radius: 4px;
+  }
+  
+/* Firefox */
+input[type='time']::-moz-focus-inner,
+input[type='date']::-moz-focus-inner {
+    background-color: var(--text-color);
+    border-radius: 4px;
+}
+  
+
+@media (max-width: 480px) {
+    .extra-large-text {
+        font-size: 24px;
+    }
+
+    .large-text {
+        font-size: 22px;
+    }
+
+    .base-text {
+        font-size: 18px;
+    }
+    
+    .small-text {
+        font-size: 16px;
+    }
+    
+    .extra-small-text {
+        font-size: 12px
+    }
+}
