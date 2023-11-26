@@ -5,6 +5,7 @@ import { FaTrash } from 'react-icons/fa';
 
 import '../../styles/general/general.css';
 import '../../styles/onboarding/onboarding.css';
+import getClasses from '../services/getClasses';
 
 const customStyles = {
     container: (provided) => ({
@@ -62,11 +63,7 @@ const customStyles = {
     }),
 };
 
-const classOptions = [
-    { value: 'csc466', label: 'CSC 466' },
-    { value: 'csc436', label: 'CSC 436' },
-    { value: 'csc372', label: 'CSC 372' }
-];
+const classOptions = [];
 
 const majorOptions = [
     { value: 'csc', label: 'Computer Science (CSC)' },
@@ -100,16 +97,36 @@ function CreateProfilePage() {
     }]);
     const [buttonClass, setButtonClass] = useState(DISABLED_BUTTON_CSS_CLASS);
 
+    const [classListOptions, setClassListOptions] = useState([]);
+
     const navigate = useNavigate();
 
     useEffect(() => {
         setButtonClass(validateInput(fullName, bio, major, classList) ? ENABLED_BUTTON_CSS_CLASS : DISABLED_BUTTON_CSS_CLASS)
     }, [fullName, bio, major, classList]);
 
+    useEffect(() => {
+        const fetchClasses = async () => {
+          try {
+            const data = await getClasses('CSC');
+            const options = data.map(cls => ({
+                value: (cls.major + cls.class_number).toLowerCase().replace(/\s/g, ''),
+                label: (cls.major + ' ' + cls.class_number).toUpperCase()
+            }));
+            console.log(data);
+            console.log(JSON.stringify(options));
+            setClassListOptions(options);
+          } catch (error) {
+            console.error("Fetching classes failed:", error);
+          }
+        };
+        fetchClasses();
+      }, []);
+      
     const addClassSelectField = () => {
         const newField = {
             id: Date.now(),
-            options: classOptions,
+            options: classListOptions,
             styles: customStyles,
             isSearchable: true,
         };
@@ -212,7 +229,7 @@ function CreateProfilePage() {
                 {classSelectFields.map(field => (
                     <div key={field.id} className='input-field-standard left-align small-spacing left-margin-small'>
                         <Select 
-                            options={field.options} 
+                            options={classListOptions}
                             styles={field.styles}
                             isSearchable={field.isSearchable}
                             onChange={(option) => {addClass(option, field.id)}} />
