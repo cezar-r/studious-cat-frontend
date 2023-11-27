@@ -48,7 +48,7 @@ function HomePage() {
     console.log(responseCode);
     if (responseCode === "100") {
       navigate('/create-profile', { state: { email: authResponse.userEmail, opToken: authResponse.OpToken } });
-    } else if (response === "200") {
+    } else if (responseCode === "200") {
       navigate('/calendar');
     }
   };
