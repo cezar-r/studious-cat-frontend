@@ -71,7 +71,7 @@ function CalendarPage() {
                 <div className="calendar-profile-button">
                     <button className="profile-button" onClick={navigateToProfilePage}>
                         <img src={uofaLogo} alt="School Logo" className="school-logo" />
-                        <span className="account-name">{netID ? netID : 'cezarr'}</span>
+                        <span className="account-name">{netID ? netID.split('@')[0] : 'cezarr'}</span>
                     </button>
                 </div>
 
