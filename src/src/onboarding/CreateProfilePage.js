@@ -118,8 +118,6 @@ function CreateProfilePage() {
                 value: (cls.major + cls.class_number).toLowerCase().replace(/\s/g, ''),
                 label: (cls.major + ' ' + cls.class_number).toUpperCase()
             }));
-            console.log(data);
-            console.log(JSON.stringify(options));
             setClassListOptions(options);
           } catch (error) {
             console.error("Fetching classes failed:", error);
@@ -137,8 +135,6 @@ function CreateProfilePage() {
                     value: major.major,
                     label: major.major_description
                 }));
-                console.log("Major options");
-                console.log(majorsOptions);
                 setMajorOptions(majorsOptions); 
             } catch (error) {
                 console.error("Fetching majors failed:", error);

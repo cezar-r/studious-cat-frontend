@@ -1,4 +1,4 @@
-const CLASSES_ENDPOINT = "https://studiouscat-backend1-ed3dfc7121f0.herokuapp.com/getMajors";
+const CLASSES_ENDPOINT = process.env.REACT_APP_INTERNAL_ENDPOINT_DOMAIN + "/getMajors";
 
 const getMajors = async () => {
     let data = [];
@@ -8,7 +8,6 @@ const getMajors = async () => {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log(data);
         return data;
     } catch (error) {
         console.error("Fetching majors failed:", error);

@@ -3,6 +3,8 @@ import NewMeetingPreviewPopup from './NewMeetingPreviewPopup';
 import moment from 'moment';
 import '../../styles/general/toggle.css';
 
+import addMeeting from '../services/addMeeting';
+
 const addOneHour = (startTime) => {
     const [hours, minutes] = startTime.split(':').map(Number);
     const newTime = new Date(0, 0, 0, hours, minutes);
@@ -52,6 +54,7 @@ function NewMeetingPopup({ closePopup }) {
         privacy: true,
         enableChatForum: true,
     });
+
     const [isPreviewVisible, setIsPreviewVisible] = useState(false);
 
     const popupRef = useRef();
@@ -64,10 +67,21 @@ function NewMeetingPopup({ closePopup }) {
         setIsPreviewVisible(false);
     }
 
-    const handleCreate = () => {
-        // TODO: call create metting API
+    const handleCreate = async () => {
         console.log('Creating meeting with details:', meetingDetails);
-        closePopup();
+
+        try {
+            const response = await addMeeting(meetingDetails);
+            if (response) {
+                console.log('Meeting created successfully', response);
+                closePopup(); 
+            } else {
+                console.error('Failed to create meeting.');
+            }
+            console.log(response);
+        } catch (error) {
+            console.error('Error while creating the meeting:', error);
+        }
     }
 
     useEffect(() => {
@@ -310,4 +324,18 @@ export default NewMeetingPopup;
 TODO
 Add google maps api to location input?
 dropdowns for class, major, and purpose
+ */
+
+/**
+ * "meeting_name": "CSC 110 study group",
+	"meeting_description": "To study for CSC 110 final exam",
+	"address": "123 W. Test Ave",
+	"start_date": "2023-11-25",
+	"end_date": "2023-11-25",
+	"start_time": "17:00:00",
+	"end_time": "18:30:00",
+	"major": "MATH",
+	"class_number": "129",
+	"term": "2234"
+
  */

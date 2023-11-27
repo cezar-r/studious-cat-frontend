@@ -1,4 +1,4 @@
-const CLASSES_ENDPOINT = "https://studiouscat-backend1-ed3dfc7121f0.herokuapp.com/getClasses/";
+const CLASSES_ENDPOINT = process.env.REACT_APP_INTERNAL_ENDPOINT_DOMAIN + "/getClasses/";
 
 const getClasses = async (major) => {
     let data = [];
