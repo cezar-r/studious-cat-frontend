@@ -1,13 +1,25 @@
 const CLASSES_ENDPOINT = process.env.REACT_APP_INTERNAL_ENDPOINT_DOMAIN + "/addMeeting";
 
-const addMeeting = async (meetingObj) => {
+const addMeeting = async (m) => {
     try {
+        const meetingEndpointObj = {
+            "meeting_name": m.meetingName,
+            "meeting_description": m.description,
+            "address": m.location,
+            "start_date": m.date,
+            "end_date": m.date,
+            "start_time": m.startTime,
+            "end_time": m.endTime,
+            "major": m.class.split(' ')[0].toUpperCase(),
+            "class_number": m.class.split(' ')[1],
+            "term": "2234"
+        };
         const response = await fetch(CLASSES_ENDPOINT, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(meetingObj),
+            body: JSON.stringify(meetingEndpointObj),
         });
 
         if (!response.ok) {
