@@ -1,11 +1,12 @@
 import React from 'react';
+import logoPath from '../../assets/logos/StudiousCatLogo.png';
+
 
 
 function Logo() {
     return (
         <div className="logo">
-            {/* TODO: <img src="/assets/logo.png" alt="Logo" /> */}
-            LOGO HERE
+            <img src={logoPath} alt="Logo" />
         </div>
     );
 }

@@ -251,13 +251,20 @@
 .logo {
     display: flex;
     justify-content: center;
+    align-items: center; /* This will vertically center your image */
     padding-top: 100px;
-    padding-bottom: 100px;
-    width: 40%;
-    max-width: 600px;
-    height: 20%;
-    max-height: 100px; 
+    padding-bottom: 150px;
+    height: 15vh; /* Sets the height of the container to 20% of the viewport height */
 }
+
+.logo img {
+    max-height: 100%; /* Ensures that the image is as tall as the container */
+    max-width: 100%; /* Ensures that the image is as wide as the container */
+    object-fit: contain; /* Maintains aspect ratio and does not stretch the image */
+    height: auto; /* Maintains the image's aspect ratio */
+    width: auto; /* Maintains the image's aspect ratio */
+}
+
   
 /* Chrome, Safari, and Edge */
 input[type='time']::-webkit-calendar-picker-indicator,
