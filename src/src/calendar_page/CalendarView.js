@@ -25,7 +25,7 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
-function CalendarView({ events }) {
+function CalendarView({ events, userID }) {
     const views = ['day', 'week', 'month', 'agenda'];
     const [view, setView] = useState('week');
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -59,6 +59,42 @@ function CalendarView({ events }) {
             setSelectedEvent(event);
         }
     };
+
+    function stringToColor(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+      
+        let color = 'rgba(';
+        for (let i = 0; i < 3; i++) {
+          const value = (hash >> (i * 8)) & 0xFF;
+          color += value + ', ';
+        }
+      
+        // Add the alpha value for transparency at the end
+        color += '0.4)'; // 0.8 is the alpha value, which you can change for more or less transparency
+      
+        return color;
+      }
+      
+      
+    function eventStyleGetter(event, start, end, isSelected) {
+        let backgroundColor = stringToColor(event.class); // Generate a color based on the class name
+        let style = {
+          backgroundColor: backgroundColor,
+          borderRadius: '0px',
+          opacity: 0.8,
+          color: '#white',
+          fontWeight: '700',
+          border: '0px',
+          display: 'block',
+          borderRadius: '6px',
+        };
+        return {
+          style: style
+        };
+    }
     
     return (
         <div className="rbc-calendar" style={{ overflowY: 'auto' }}>
@@ -67,14 +103,17 @@ function CalendarView({ events }) {
                     event={selectedEvent} 
                     style={{ 
                         position: 'absolute', 
-                        left: `${popupPosition.x}px`, 
-                        top: `${popupPosition.y - 200}px` 
-                    }} 
+                        left: `${popupPosition.x }px`, 
+                        top: `${popupPosition.y - 400}px`,
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)'
+                    }}
+                    userID={userID}
                 />
             )}
             <Calendar
                 localizer={localizer}
                 events={events}
+                eventPropGetter={eventStyleGetter}
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: '100%', width: '100%' }}

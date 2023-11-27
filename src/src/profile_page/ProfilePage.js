@@ -33,31 +33,35 @@ function ProfilePage() {
         <div className="profile-container">
             <div className="content-wrapper">
                 <div className="profile-header">
-                    <div className=''>
                         <div>
-                            <h1>{PROFILE.name}</h1>
-                            <h2 style={{padding: '12px'}}>{PROFILE.username}</h2>
+                            <h1>{PROFILE.netID}</h1>
+                            <h2>{PROFILE.name}</h2>
                         </div>
-                    </div>
+                        <h4>
+                            {PROFILE.bio}
+                        </h4>
                     {/* <button className='button-a' onClick={() => navigate('/edit-profile')}>Edit Profile</button> */}
                 </div>
-                <div className="profile-personal-info">
-                    <p><strong>NetID:</strong> {PROFILE.netID}</p>
-                </div>
                 <div className='profile-school-info'>
-                    <h2 className='h2-a'>School Information</h2>
-                    <p><strong>Major:</strong> {PROFILE.major}</p>
-                    <p><strong>Class List:</strong></p>
-                    <ul className="ul-a">
-                        {PROFILE.class_list.map((cls, index) => <li key={index}>{cls}</li>)}
-                    </ul>
+                    <h1> School Information</h1>
+                    <h3>{PROFILE.major} Major</h3>
+                    <div className="small-spacing"></div>
+                    <h2>Class List</h2>
+                    <div className="class-list">
+                    {PROFILE.class_list.map((cls, index) => (
+                        <div key={index} className="class-item">
+                        {cls}
+                        </div>
+                    ))}
+                    </div>
+
                 </div>
                 <div className='previous-meetings'>
                     <h2 className='h2-a'>Previous Meetings</h2>
                     {PROFILE.previous_meetings.map((meeting, index) => (
-                        <div key={index} className='meeting'>
-                            <p><strong>Name:</strong> {meeting.name}</p>
-                            <p><strong>Location:</strong> {meeting.location}</p>
+                        <div key={index} className='meeting-item'>
+                        <p> {meeting.name}</p>
+                        <p> {meeting.location}</p>
                         </div>
                     ))}
                 </div>

@@ -43,13 +43,13 @@ function HomePage() {
   const handleGoogleSignIn = async (response) => {
     // TODO
     console.log(response);
-    const authResponse = await  authUser(response);
+    const authResponse = await authUser(response);
     const responseCode = authResponse.ResponseCode;
-    console.log(responseCode);
+    console.log(authResponse);
     if (responseCode === "100") {
       navigate('/create-profile', { state: { email: authResponse.userEmail, opToken: authResponse.OpToken } });
     } else if (responseCode === "200") {
-      navigate('/calendar');
+      navigate('/calendar', { state: { userID: authResponse.userId } });
     }
   };
 

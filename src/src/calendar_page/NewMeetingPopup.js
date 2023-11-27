@@ -32,7 +32,7 @@ const calculateDuration = (startTime, endTime) => {
 };
 
 
-function NewMeetingPopup({ closePopup }) {
+function NewMeetingPopup({ closePopup, userID }) {
     const ENABLED_BUTTON_CSS_CLASS = 'continue-button-enabled';
     const DISABLED_BUTTON_CSS_CLASS = 'continue-button-disabled';
     const CANCEL_BUTTON_CSS_CLASS = 'continue-button-disabled-clickable';
@@ -71,9 +71,10 @@ function NewMeetingPopup({ closePopup }) {
         console.log('Creating meeting with details:', meetingDetails);
 
         try {
-            const response = await addMeeting(meetingDetails);
+            const response = await addMeeting(meetingDetails, userID);
             if (response) {
                 closePopup(); 
+                window.location.reload();
             } else {
                 console.error('Failed to create meeting.');
             }

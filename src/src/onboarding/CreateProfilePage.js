@@ -197,7 +197,7 @@ function CreateProfilePage() {
                         let addClassResponse = await addClassUser(userID, classObj);
                     }
 
-                    navigate('/calendar', { state: { userID: userID } })
+                    navigate('/calendar', { state: { userID: userID, netID: email } })
                 } catch (error) {
                     console.error('There was an error!', error);
                 }
