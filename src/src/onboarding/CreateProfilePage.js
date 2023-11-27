@@ -7,6 +7,8 @@ import '../../styles/general/general.css';
 import '../../styles/onboarding/onboarding.css';
 import getClasses from '../services/getClasses';
 import getMajors from '../services/getMajors';
+import addClassUser from "../services/addClassUser";
+import addUser from "../services/addUser";
 
 const customStyles = {
     container: (provided) => ({
@@ -84,6 +86,7 @@ function CreateProfilePage() {
     const DISABLED_BUTTON_CSS_CLASS = 'continue-button-disabled';
     const location = useLocation();
     const email = location.state.email;
+    const opToken = location.state.opToken;
     
     const [fullName, setFullName] = useState('');
     const [bio, setBio] = useState('');
@@ -185,34 +188,22 @@ function CreateProfilePage() {
                 'major': major,
                 'classList': classList
             };
-            console.log(userObj);
-
             const signUp = async () => {
                 try {
-                    const response = await fetch('/api/signup', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(userObj)
-                    });
+                    const addUserResponse = await addUser(opToken);
 
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                    const userID = addUserResponse.userId;
+                    for (let classObj of classList) {
+                        let addClassResponse = await addClassUser(userID, classObj);
                     }
 
-                    const data = await response.json();
-                    console.log(data);
-                    if (data.success) {
-                        navigate('/calendar', { state: { email: email } });
-                    }
+                    navigate('/calendar', { state: { userID: userID } })
                 } catch (error) {
                     console.error('There was an error!', error);
                 }
             };
 
             signUp();
-
             setIsSigningUp(false);
         }
     }, [isSigningUp, classList, email, fullName, bio, major, navigate]);

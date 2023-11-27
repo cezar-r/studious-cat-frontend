@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 function NewMeetingPreviewPopup({ meetingDetails, onEdit, onCreate }) {
+
+  
+
   return (
     <div className="popup-overlay">
       <div className="pop-up-window">

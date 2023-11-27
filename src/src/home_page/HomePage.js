@@ -4,6 +4,7 @@ import { GoogleLogin } from '@react-oauth/google';
 
 import FooterLinks from '../footer_pages/FooterLinks';
 import Logo from '../components/Logo';
+import authUser from '../services/auth';
 import '../../styles/home_page/homepage.css';
 import '../../styles/general/general.css';
 
@@ -42,28 +43,14 @@ function HomePage() {
   const handleGoogleSignIn = async (response) => {
     // TODO
     console.log(response);
-
-    // const requestBody = {
-    //   method: 'POST',
-    //   headers: {
-    //       'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //       token: response.credential,
-    //   })
-    // };
-
-    // try {
-    //   const res = await fetch('YOUR_AWS_API_GATEWAY_ENDPOINT', requestBody);
-    //   const data = await res.json();
-    //   if (data.accountExists) {
-    //     // navigate to calendar with data.authToken
-    //   } else {
-    //     // navigate to sign up with data.authToken
-    //   }
-    // } catch (error) {
-    //   console.error('Error sending data to AWS API:', error);
-    // }
+    const authResponse = await  authUser(response);
+    const responseCode = authResponse.ResponseCode;
+    console.log(responseCode);
+    if (responseCode === "100") {
+      navigate('/create-profile', { state: { email: authResponse.userEmail, opToken: authResponse.OpToken } });
+    } else if (response === "200") {
+      navigate('/calendar');
+    }
   };
 
   return (
