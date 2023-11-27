@@ -6,6 +6,7 @@ import { FaTrash } from 'react-icons/fa';
 import '../../styles/general/general.css';
 import '../../styles/onboarding/onboarding.css';
 import getClasses from '../services/getClasses';
+import getMajors from '../services/getMajors';
 
 const customStyles = {
     container: (provided) => ({
@@ -64,12 +65,13 @@ const customStyles = {
 };
 
 const classOptions = [];
+// const majorOptions = [];
 
-const majorOptions = [
-    { value: 'csc', label: 'Computer Science (CSC)' },
-    { value: 'ee', label: 'Electrical Engineering (EE)' },
-    { value: 'comm', label: 'Communications (COMM)' }
-];
+// const majorOptions = [
+//     { value: 'csc', label: 'Computer Science (CSC)' },
+//     { value: 'ee', label: 'Electrical Engineering (EE)' },
+//     { value: 'comm', label: 'Communications (COMM)' }
+// ];
 
 const validateInput = (fullName, bio, major, classList) => {
     return fullName !== '' && 
@@ -95,6 +97,7 @@ function CreateProfilePage() {
         styles: customStyles,
         isSearchable: true,
     }]);
+    const [majorOptions, setMajorOptions] = useState([]);
     const [buttonClass, setButtonClass] = useState(DISABLED_BUTTON_CSS_CLASS);
 
     const [classListOptions, setClassListOptions] = useState([]);
@@ -106,9 +109,11 @@ function CreateProfilePage() {
     }, [fullName, bio, major, classList]);
 
     useEffect(() => {
+        if (!major) return; 
+    
         const fetchClasses = async () => {
           try {
-            const data = await getClasses('CSC');
+            const data = await getClasses(major.value);
             const options = data.map(cls => ({
                 value: (cls.major + cls.class_number).toLowerCase().replace(/\s/g, ''),
                 label: (cls.major + ' ' + cls.class_number).toUpperCase()
@@ -121,7 +126,27 @@ function CreateProfilePage() {
           }
         };
         fetchClasses();
-      }, []);
+    }, [major]);
+    
+
+    useEffect(() => {
+        const fetchMajors = async () => {
+            try {
+                const majorsData = await getMajors();
+                const majorsOptions = majorsData.map(major => ({
+                    value: major.major,
+                    label: major.major_description
+                }));
+                console.log("Major options");
+                console.log(majorsOptions);
+                setMajorOptions(majorsOptions); 
+            } catch (error) {
+                console.error("Fetching majors failed:", error);
+            }
+        };
+
+        fetchMajors();
+    }, []);
       
     const addClassSelectField = () => {
         const newField = {
